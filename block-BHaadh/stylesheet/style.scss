@@ -17,22 +17,6 @@ h2 {
   text-align: center;
   margin-top: 5rem;
 }
-.container1 {
-  max-width: 1000px;
-  background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
-  margin: 0 auto;
-  width: 100%;
-  border: 2px solid black;
-  padding: 3rem 2rem;
-
-  &:hover .box {
-    animation-name: slide1;
-    animation-duration: 4s;
-    animation-timing-function: linear;
-    animation-delay: 1s;
-    animation-iteration-count: infinite;
-  }
-}
 
 .container2 {
   max-width: 1000px;
@@ -44,7 +28,7 @@ h2 {
   height: 50vh;
   position: relative;
   margin-bottom: 5rem;
-  &:hover .cube {
+  &:hover .cube1 {
     animation-name: slide;
     animation-duration: 4s;
     animation-timing-function: linear;
@@ -53,15 +37,20 @@ h2 {
   }
 }
 
-.box {
-  width: 100px;
-  height: 100px;
-  background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+.cube1 {
   position: relative;
-}
-
-.cube {
-  position: relative;
+  .top {
+    background: rebeccapurple;
+    transform: rotate(-45deg) skew(15deg, 15deg);
+  }
+  .left {
+    background: blueviolet;
+    transform: rotate(15deg) skew(15deg, 15deg) translate(-50%, 100%);
+  }
+  .right {
+    background: blue;
+    transform: rotate(-15deg) skew(-15deg, -15deg) translate(50%, 100%);
+  }
 }
 .side {
   height: 100px;
@@ -73,45 +62,81 @@ h2 {
   right: 4rem;
   bottom: 10rem;
 }
-.top {
-  background: rebeccapurple;
-  transform: rotate(-45deg) skew(15deg, 15deg);
-}
-.left {
-  background: blueviolet;
-  transform: rotate(15deg) skew(15deg, 15deg) translate(-50%, 100%);
-}
-.right {
-  background: blue;
-  transform: rotate(-15deg) skew(-15deg, -15deg) translate(50%, 100%);
-}
-@keyframes slide1 {
-  0% {
-    left: 100px;
-  }
-
-  50% {
-    background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
-    left: 400px;
-  }
-  100% {
-    left: 800px;
-    background-image: linear-gradient(-20deg, #d558c8 0%, #24d292 100%);
-  }
-}
-
 @keyframes slide {
   0% {
-    background-color: rgb(13, 117, 13);
     left: 100px;
   }
 
   50% {
-    background-color: rgb(15, 88, 15);
     left: 400px;
   }
   100% {
     left: 700px;
-    background-color: rgb(32, 122, 32);
+  }
+}
+
+// 3d
+.container1 {
+  max-width: 1000px;
+  background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  margin: 0 auto;
+  width: 100%;
+  border: 2px solid black;
+  padding: 3rem 2rem;
+  perspective: 500px;
+  perspective-origin: 50% 100px;
+  height: 60vh;
+  margin-bottom: 5rem;
+  &:hover .cube2 {
+    animation: slide 7s linear infinite;
+  }
+}
+
+.cube2 {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  transform: rotate3d(0, 0, 0, 45deg);
+}
+.cube2 .face {
+  width: 100px;
+  height: 100px;
+  background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
+  border: 2px solid black;
+  position: absolute;
+  opacity: 0.8;
+}
+.cube2 {
+  .front {
+    transform: translateZ(50px);
+  }
+  .back {
+    transform: translateZ(-50px) rotateY(180deg);
+  }
+  .left {
+    transform: translateX(-50px) rotateY(-90deg);
+  }
+
+  .right {
+    transform: translateX(50px) rotateY(90deg);
+  }
+  .top {
+    transform: translateY(-50px) rotateX(90deg);
+    background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
+  }
+
+  .bottom {
+    transform: translateY(50px) rotateX(-90deg);
+    background-image: linear-gradient(to top, #50cc7f 0%, #f5d100 100%);
+  }
+}
+
+@keyframes turn {
+  from {
+    transform: rotate3d(0, 0, 0, 0);
+  }
+  to {
+    transform: rotate3d(1, 1, 0, 360deg);
   }
 }
