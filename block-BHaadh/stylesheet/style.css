@@ -163,8 +163,8 @@ h2 {
 }
 
 .container1:hover .box {
-  -webkit-animation-name: slide;
-          animation-name: slide;
+  -webkit-animation-name: slide1;
+          animation-name: slide1;
   -webkit-animation-duration: 4s;
           animation-duration: 4s;
   -webkit-animation-timing-function: linear;
